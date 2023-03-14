@@ -1,4 +1,4 @@
-const data = {
+export const data = {
   SYMBOL: 'Please select the currency',
   AED: 'United Arab Emirates Dirham',
   AFN: 'Afghan Afghani',
@@ -160,5 +160,3 @@ const data = {
   ZMW: 'Zambian Kwacha',
   ZWL: 'Zimbabwean Dollar',
 }
-
-module.exports = data

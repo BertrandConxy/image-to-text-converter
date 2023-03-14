@@ -1,19 +1,19 @@
-const axios = require('axios');
-const data = require('../data/currency-symbols')
+import { get } from 'axios';
+import {data } from '../data/currency-symbols';
 
-const getCurrencySymbols = (req, res) => {
+export const getCurrencySymbols = (req, res) => {
   res.render('index', {currencySymbols: data});
 }
 
-const currencyConvert = async (req,res) => {
+export const currencyConvert = async (req,res) => {
     const { fromCurrency, toCurrency, amount } = req.query;
     try {
         if(fromCurrency === null || fromCurrency === null || amount === null) {
             res.render('error')
         }
-      const response = await axios.get(`https://api.apilayer.com/fixer/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`, {
+      const response = await get(`https://api.apilayer.com/fixer/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`, {
         headers: {
-          apikey: process.env.API_KEY,
+          apikey: 'd0lA9Ngr81VqZKkHnDvdiLcjvnVcNApF',
         }
       });
       const result = response.data;
@@ -23,5 +23,3 @@ const currencyConvert = async (req,res) => {
       res.render('error');
     }
 }
-
-module.exports = [currencyConvert, getCurrencySymbols]

@@ -1,16 +1,17 @@
-require('dotenv').config()
-const express = require('express');
-const routes = require('./routes/route')
+import express from 'express';
+import {routes}  from './routes/route.js';
+import { join } from 'path';
 
 const app = express();
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
+// Set the view directory
+app.set('views', join(__dirname, '/views'))
 // Serve static files from the 'public' folder
 app.use(express.static('public'));
-app.use(routes)
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
 });
 
-module.exports = app;
+export default app;
