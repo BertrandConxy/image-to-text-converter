@@ -1,6 +1,6 @@
 import { createWorker } from "tesseract.js";
 export const getIndexView = (req, res) => {
-  res.render('index', {text: null, error: null});
+  res.render('index', {text: 'Text content will be displayed here', error: null});
 }
 
 export const handleImageConvert = async (req,res) => {
@@ -10,9 +10,6 @@ export const handleImageConvert = async (req,res) => {
     res.render('index', { text: null, error: 'No file uploaded' });
     return;
   }
-
-  res.render('index', { text: 'Parsing the file', error: null });
-  await worker.load();
   await worker.loadLanguage('eng');
   await worker.initialize('eng');
   const { data: { text } } = await worker.recognize(imagePath);
