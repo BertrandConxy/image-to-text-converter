@@ -1,15 +1,14 @@
 import express from 'express';
 import {router}  from './routes/route.js';
-import path, { join } from 'path';
+import { join } from 'path';
 import multer from 'multer';
 
-const __dirname = path.dirname('C:\\Users\\USER\\OneDrive\\Documents\\Reviews\\image-to-text-converter\\src\\index.js');
 
 const app = express();
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 // Set the view directory
-app.set('views', join(__dirname, 'views'))
+app.set('views', join('./src', 'views'));
 // Serve static files from the 'public' folder
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
