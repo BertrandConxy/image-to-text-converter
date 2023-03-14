@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getCurrencySymbols, currencyConvert } from '../controllers/controller';
+import { getCurrencySymbols, currencyConvert } from '../controllers/controller.js';
 
 export const router = Router();
 

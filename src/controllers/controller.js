@@ -1,5 +1,5 @@
-import { get } from 'axios';
-import {data } from '../data/currency-symbols';
+import get from 'axios';
+import {data } from '../data/currency-symbols.js';
 
 export const getCurrencySymbols = (req, res) => {
   res.render('index', {currencySymbols: data});
