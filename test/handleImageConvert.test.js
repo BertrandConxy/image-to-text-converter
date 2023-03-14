@@ -16,7 +16,7 @@ describe('handleImageConvert', () => {
       terminate: stub().resolves(),
     };
 
-    req = { file: { path: 'C:\\Users\\USER\\OneDrive\\Documents\\Reviews\\image-to-text-converter\\pinkHEADER.png' } };
+    req = { file: { path: './public/assets/test.png' } };
     res = {
       render: (view, data) => {},
     };
