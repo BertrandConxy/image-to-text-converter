@@ -6,17 +6,8 @@
   <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
+  <h2 class="card__heading">Image -> Text Converter</h2>
   <div class="card">
-    <h2 class="card__heading">Image -> Text Converter</h2>
-    <% if (text) { %>
-      <p>Recognized text:</p>
-      <pre><%= text %></pre>
-    <% } %>
-    
-    <% if (error) { %>
-      <p>Recognized text:</p>
-      <pre><%= error %></pre>
-    <% } %>
     <form action="/upload" method="post" class="form" enctype="multipart/form-data">
       <div class="form__control">
         <label for="amount">Attach Image</label>
@@ -24,6 +15,18 @@
       </div>
       <button type="submit" class="btn">Upload</button>
     </form>
+  </div>
+
+  <div class="card">
+    <% if (error) { %>
+      <p>Recognized text:</p>
+      <pre><%= error %></pre>
+    <% } %>
+
+    <% if (text) { %>
+      <p>Recognized text:</p>
+      <pre><%= text %></pre>
+    <% } %> 
   </div>
 </body>
 </html>

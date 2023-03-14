@@ -11,7 +11,7 @@ export const handleImageConvert = async (req,res) => {
     return;
   }
 
-
+  res.render('index', { text: 'Parsing the file', error: null });
   await worker.load();
   await worker.loadLanguage('eng');
   await worker.initialize('eng');
