@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Currency Converter</title>
+  <title>Image-to-text-converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 <body>
   <div class="card">
-
-    <h2 class="card__heading">Currency Converter</h2>
-    <form action="/convert" method="get" class="form">
+    <h2 class="card__heading">Image -> Text Converter</h2>
+    <% if (text) { %>
+      <p>Recognized text:</p>
+      <pre><%= text %></pre>
+    <% } %>
+    
+    <% if (error) { %>
+      <p>Recognized text:</p>
+      <pre><%= error %></pre>
+    <% } %>
+    <form action="/upload" method="post" class="form" enctype="multipart/form-data">
       <div class="form__control">
-        <label for="amount">Enter Amount:</label>
-        <input type="number" name="amount" id="amount" placeholder="Enter amount" required>
+        <label for="amount">Attach Image</label>
+        <input type="file" name="image" placeholder="Attach File" required />
       </div>
-      <div class="form__control">
-        <label for="from-currency">From:</label>
-        <select name="fromCurrency" id="from-currency" class="form__selector" required>
-          <% for (const [key, value] of Object.entries(currencySymbols)) { %>
-            <option value=<%=`${key}`%>><%=`${key} - ${value}` %></option>
-          <%} %>
-        </select>
-      </div>
-      <div class="form__control">
-        <label for="to-currency">To:</label>
-        <select name="toCurrency" id="to-currency" class="form__selector" required>
-          <% for (const [key, value] of Object.entries(currencySymbols)) { %>
-            <option value=<%=`${key}`%>><%=`${key} - ${value}` %></option>
-          <%} %>
-        </select>
-      </div>
-      <button type="submit" class="btn">Convert</button>
+      <button type="submit" class="btn">Upload</button>
     </form>
   </div>
 </body>

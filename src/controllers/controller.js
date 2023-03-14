@@ -1,25 +1,21 @@
-import get from 'axios';
-import {data } from '../data/currency-symbols.js';
-
-export const getCurrencySymbols = (req, res) => {
-  res.render('index', {currencySymbols: data});
+import { createWorker } from "tesseract.js";
+export const getIndexView = (req, res) => {
+  res.render('index', {text: null, error: null});
 }
 
-export const currencyConvert = async (req,res) => {
-    const { fromCurrency, toCurrency, amount } = req.query;
-    try {
-        if(fromCurrency === null || fromCurrency === null || amount === null) {
-            res.render('error')
-        }
-      const response = await get(`https://api.apilayer.com/fixer/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`, {
-        headers: {
-          apikey: 'd0lA9Ngr81VqZKkHnDvdiLcjvnVcNApF',
-        }
-      });
-      const result = response.data;
-      res.render('result', { amount, fromCurrency, toCurrency, result });
-    } catch (error) {
-      console.error(error);
-      res.render('error');
-    }
+export const handleImageConvert = async (req,res) => {
+  const worker = await createWorker()
+  const { path: imagePath } = req.file;
+  if (!req.file) {
+    res.render('index', { text: null, error: 'No file uploaded' });
+    return;
+  }
+
+
+  await worker.load();
+  await worker.loadLanguage('eng');
+  await worker.initialize('eng');
+  const { data: { text } } = await worker.recognize(imagePath);
+  await worker.terminate();
+  res.render('index', { text, error: null });
 }

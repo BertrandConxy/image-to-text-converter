@@ -1,6 +1,11 @@
 import express from 'express';
 import {router}  from './routes/route.js';
 import path, { join } from 'path';
+import multer from 'multer';
+import { createWorker } from 'tesseract.js';
+
+export const worker = createWorker()
+
 
 const __dirname = path.dirname('C:\\Users\\USER\\OneDrive\\Documents\\Reviews\\image-to-text-converter\\src\\index.js');
 
@@ -11,6 +16,9 @@ app.set('view engine', 'ejs');
 app.set('views', join(__dirname, 'views'))
 // Serve static files from the 'public' folder
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(multer({ dest: 'uploads' }).single('image'));
 app.use(router)
 
 app.listen(3000, () => {
