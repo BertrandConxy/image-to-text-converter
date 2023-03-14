@@ -2,10 +2,6 @@ import express from 'express';
 import {router}  from './routes/route.js';
 import path, { join } from 'path';
 import multer from 'multer';
-import { createWorker } from 'tesseract.js';
-
-export const worker = createWorker()
-
 
 const __dirname = path.dirname('C:\\Users\\USER\\OneDrive\\Documents\\Reviews\\image-to-text-converter\\src\\index.js');
 
