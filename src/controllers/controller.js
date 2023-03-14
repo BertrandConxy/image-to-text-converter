@@ -5,11 +5,11 @@ export const getIndexView = (req, res) => {
 
 export const handleImageConvert = async (req,res) => {
   const worker = await createWorker()
-  const { path: imagePath } = req.file;
   if (!req.file) {
     res.render('index', { text: null, error: 'No file uploaded' });
     return;
   }
+  const { path: imagePath } = req.file;
   await worker.loadLanguage('eng');
   await worker.initialize('eng');
   const { data: { text } } = await worker.recognize(imagePath);
